@@ -8,8 +8,6 @@ pipeline {
             }
         }
     }
-
-    stages {
         stage('Hello') {
             steps {
                 // This step should not normally be used in your script. Consult the inline help for details.
