@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
     stages {
         stage('Clone stages') {
             steps {
@@ -15,9 +18,8 @@ pipeline {
 
         stage('Login') {
             steps{
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'currently https://index.docker.io/v1/'){
-                    sh 'sudo docker push rinloda/sprits-club:latest'
-                }
+               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                
             }
         }
     }
