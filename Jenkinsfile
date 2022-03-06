@@ -9,7 +9,7 @@ pipeline {
     
         stage('build'){
             steps {
-                sh 'docker build -t rinloda/sprits-club:latest .'
+                sh 'sudo docker build -t rinloda/sprits-club:latest .'
             }
         }
     }
