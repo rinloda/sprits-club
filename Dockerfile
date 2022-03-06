@@ -1,5 +1,2 @@
-FROM node:alpine
-RUN mkdir -p /app
-WORKDIR /app
-COPY . . 
-CMD ["node", "index.html"]
+FROM busybox
+CMD echo "Hello world! This is 2020-09-test."
