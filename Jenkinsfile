@@ -2,9 +2,22 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone stages') {
+            steps {
+                git credentialsId: 'github_id', url: 'https://github.com/rinloda/sprits-club.git'
+            }
+        }
+    }
+
+    stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                // This step should not normally be used in your script. Consult the inline help for details.
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+                    // some block
+                    sh 'docker build -t rinloda/sprits-club:v1.1 .'
+                    sh 'docker push rinloda/sprits-club:v1.1'
+                }
             }
         }
     }
