@@ -22,6 +22,12 @@ pipeline {
                 
             }
         }
+
+        stage('Push'){
+            steps{
+                sh 'sudo docker push rinloda/sprits-club:latest'
+            }
+        }
     }
 }
 
