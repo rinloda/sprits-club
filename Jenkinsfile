@@ -7,11 +7,16 @@ pipeline {
             }
         }
     
-        stage('Docker') {
+        stage('build'){
             steps {
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/')  {
-                    sh 'docker build -t rinloda/sprits-club:v1.1 .'
-                    sh 'docker push rinloda/sprits-club:v1.1'
+                sh 'sudo docker build -t rinloda/sprits-club:latest .'
+            }
+        }
+
+        stage('Login') {
+            steps{
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'currently https://index.docker.io/v1/'){
+                    sh 'sudo docker push rinloda/sprits-club:latest'
                 }
             }
         }
