@@ -7,7 +7,7 @@ pipeline {
                 git credentialsId: 'github_id', url: 'https://github.com/rinloda/sprits-club.git'
             }
         }
-    }
+    
         stage('Hello') {
             steps {
                 // This step should not normally be used in your script. Consult the inline help for details.
@@ -20,3 +20,4 @@ pipeline {
         }
     }
 }
+
