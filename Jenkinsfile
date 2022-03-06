@@ -11,9 +11,9 @@ pipeline {
         stage('Hello') {
             steps {
                 // This step should not normally be used in your script. Consult the inline help for details.
-                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io') {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
                     // some block
-                    sh 'sudo docker build -t rinloda/sprits-club:v1.1 .'
+                    sh 'sudo docker build -t rinloda/sprits-club:v1.1'
                     sh 'sudo docker push rinloda/sprits-club:v1.1'
                 }
             }
