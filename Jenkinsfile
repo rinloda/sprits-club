@@ -1,11 +1,11 @@
 pipeline{
     agent any
-    stages (Cloning stages) {
+    stages (Cloning project) {
         steps {
             git credentialsId: 'github_id', url: 'https://github.com/rinloda/sprits-club.git' 
         }
     }
-    stages (Docker stages){
+    stages (Docker build and push){
         steps {
             // This step should not normally be used in your script. Consult the inline help for details.
             withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
