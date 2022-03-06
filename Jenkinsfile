@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone stages') {
             steps {
-                echo 'hello'
+                git credentialsId: 'github_id', url: 'https://github.com/rinloda/sprits-club.git'
             }
         }
     
