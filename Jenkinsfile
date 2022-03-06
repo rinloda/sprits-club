@@ -1,46 +1,21 @@
-pipeline{
-
-	agent any
-
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
-	}
-
-	stages {
-	    
-	    stage('gitclone') {
-
-			steps {
-				git 'https://github.com/rinloda/sprits-club.git'
-			}
-		}
-
-		stage('Build') {
-
-			steps {
-				sh 'docker build -t rinloda/sprits-club:latest .'
-			}
-		}
-
-		stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push rinloda/sprits-club:latest'
-			}
-		}
-	}
-
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
-
+pipeline {
+    agent any
+    stages {
+        stage('Clone stages') {
+            steps {
+                git credentialsId: 'github_id', url: 'https://github.com/rinloda/sprits-club.git'
+            }
+        }
+    
+        stage('Docker') {
+            steps {
+                
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/')  {
+                    sh 'docker build -t rinloda/sprits-club:v1.1 .'
+                    sh 'docker push rinloda/sprits-club:v1.1'
+                }
+            }
+        }
+    }
 }
+
