@@ -28,11 +28,11 @@ pipeline {
         //     }
         // }
 
-        stage('Dcoker push'){
+        stage('Docker push'){
             steps{
                 sh 'sudo docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
                 sh 'sudo docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest'
-                sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}" //Remove to save storage
+                sh "sudo docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}" //Remove to save storage
             }
         }
     }
