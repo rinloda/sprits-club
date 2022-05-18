@@ -1,2 +1,4 @@
-FROM busybox
-CMD echo "Hello world! This is 2020-09-test."
+FROM nginx:alpine
+LABEL Maintainer="TanNguyen <nguyenngoctan130695@gmail.com>" \
+      Description="Sprits Club Website deploy on Nginx Alpine."
+COPY . /usr/share/nginx/html
